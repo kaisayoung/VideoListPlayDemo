@@ -14,7 +14,6 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) SCVideoPlayListTableViewCell *currentPlayingCell;
 @property (assign, nonatomic) NSInteger currentPlayingIndex;
-@property (assign, nonatomic) NSInteger selectPlayingIndex;
 @property (assign, nonatomic) NSInteger lastOrientationValue;
 @property (assign, nonatomic) CGRect startFrame1;               //在cell上的frame
 @property (assign, nonatomic) CGRect startFrame2;               //转到self.view上的frame
@@ -325,7 +324,7 @@
     NSInteger visibleCount = [_visibleIndexArray count];
     for(int i=0;i<visibleCount;i++){
         NSIndexPath *oneIndexPath = [_visibleIndexArray objectAtIndex:i];
-        if(_selectPlayingIndex==oneIndexPath.row){
+        if(_currentPlayingIndex==oneIndexPath.row){
             return NO;
         }
     }
@@ -402,7 +401,7 @@
 - (void)tableView:(UITableView *)tableView didEndDisplayingCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [_visibleIndexArray removeObject:indexPath];
-    if(_selectPlayingIndex==indexPath.row){
+    if(_currentPlayingIndex==indexPath.row){
         [self rotateToPortrait];
         if(_currentPlayingCell){
             [_currentPlayingCell removeFromSuperview];
@@ -436,7 +435,6 @@
         _currentPlayingCell = nil;
     }
     _currentPlayingIndex = index;
-    _selectPlayingIndex = index;
     _currentPlayingCell = cell;
 }
 
