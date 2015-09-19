@@ -1,2 +1,2 @@
 # VideoListPlayDemo
-类似搜狐视频列表视频播放
+类似搜狐视频视频列表播放demo
